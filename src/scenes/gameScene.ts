@@ -2,9 +2,9 @@ import Phaser from "phaser";
 
 export default class GameScene extends Phaser.Scene {
 
-  private platfroms?: Phaser.Physics.Arcade.StaticGroup;
-  private player?: Phaser.Physics.Arcade.Sprite;
-  private cursors?: Phaser.Types.Input.Keyboard.CursorKeys;
+  private platfroms?: Phaser.Physics.Arcade.StaticGroup | undefined;
+  private player?: Phaser.Physics.Arcade.Sprite | undefined;
+  private cursors?: Phaser.Types.Input.Keyboard.CursorKeys | undefined;
 
   constructor() {
     super("GameScene");
@@ -68,18 +68,18 @@ export default class GameScene extends Phaser.Scene {
   }
   //
   update(time: number, delta: number): void {
-    if(this.cursors.left.isDown){
-        this.player.setVelocityX(-160);
-        this.player.anims.play('left', true);
-    }else if(this.cursors.right.isDown){
-        this.player.setVelocityX(160);
-        this.player.anims.play('right', true);
+    if(this.cursors?.left.isDown){
+        this.player?.setVelocityX(-160);
+        this.player?.anims.play('left', true);
+    }else if(this.cursors?.right.isDown){
+        this.player?.setVelocityX(160);
+        this.player?.anims.play('right', true);
     }else{
-        this.player.setVelocityX(0);
-        this.player.anims.play('turn');
+        this.player?.setVelocityX(0);
+        this.player?.anims.play('turn');
     }
 
-    if(this.cursors.up.isDown && this.player.body.touching.down){
+    if(this.cursors?.up.isDown && this.player?.body.touching.down){
         this.player.setVelocityY(-330);
     }
   }
